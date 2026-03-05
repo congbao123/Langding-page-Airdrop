@@ -1,78 +1,169 @@
+import Image from "next/image";
+import heroCharacter from "@/public/hero/BetterImage.png";
+import heroCharacter1 from "@/public/hero/BetterImage_1772607124998 1.png";
+import heroCharacter4 from "@/public/hero/BetterImage_1772607124998 4.png";
+import heroCharacter5 from "@/public/hero/BetterImage_1772607124998 5.png";
+import vector1 from "@/public/hero/vector1.png";
+import vector2 from "@/public/hero/vector2.png";
+import { ArrowRight, Send } from "lucide-react";
 
-// import Image from 'next/image';
-// import textlogo from '@/public/Img/header/logo.svg'; // giả sử logo là text-based
-
-export function Hero() {
+// ─── Title shadow layer ────────────────────────────────────────────────────────
+function HeroTitleShadow() {
   return (
-    <section  id="about" className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-[#0a011f] via-[#140329] to-[#000000] overflow-hidden">
-      {/* Background subtle effect (optional: particles / grid nếu dùng library) */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,255,255,0.08),transparent_40%)]" />
+    <span
+      aria-hidden
+      className="absolute inset-0 pointer-events-none select-none"
+      style={{
+        fontFamily: "'Poppins', sans-serif",
+        fontWeight: 800,
+        fontSize: "clamp(22px, 7vw, 115px)",
+        lineHeight: 1.05,
+        letterSpacing: "1.2px",
+        color: "#006f7b",
+        opacity: 0.55,
+        whiteSpace: "nowrap",
+        transform: "translate(3px, 5px)",
+      }}
+    >
+      ON-CHAIN MASTER
+    </span>
+  );
+}
 
-      {/* Overlay tối để text rõ hơn */}
-      <div className="absolute inset-0 bg-black/50" />
+// ─── Title foreground gradient layer ──────────────────────────────────────────
+function HeroTitleForeground() {
+  return (
+    <span
+      className="relative pointer-events-none select-none"
+      style={{
+        fontFamily: "'Poppins', sans-serif",
+        fontWeight: 800,
+        fontSize: "clamp(22px, 7vw, 115px)",
+        lineHeight: 1.05,
+        letterSpacing: "1.2px",
+        background: "linear-gradient(to right, #ffffff 40%, #a3e7ed 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+        filter: "drop-shadow(0px 4px 8px #0ca8b9)",
+        whiteSpace: "nowrap",
+        display: "block",
+      }}
+    >
+      ON-CHAIN MASTER
+    </span>
+  );
+}
 
-      <div className="relative z-10 text-center px-6 md:px-12 max-w-7xl w-full mt-10">
-        {/* Mainnet badge */}
-        <div className="inline-flex items-center gap-3 px-5 py-2.5 mb-8 rounded-full border border-cyan-500/40 bg-black/40 backdrop-blur-sm text-cyan-300 text-sm font-medium">
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-          </span>
-          Native Blockchain Mainnet – Live
-        </div>
+// ─── Composed title block ──────────────────────────────────────────────────────
+function HeroTitle() {
+  return (
+    <div className="relative inline-block" style={{ lineHeight: 1.05 }}>
+      <HeroTitleShadow />
+      <HeroTitleForeground />
+    </div>
+  );
+}
 
-     
+// ─── Main Hero Section ─────────────────────────────────────────────────────────
+export default function HeroSection() {
+  return (
+    <section className="relative w-full min-h-screen overflow-hidden bg-[#0a0a0f] flex items-center">
 
-        {/* Headline + subheadline */}
-        <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
-          Wika<span className="text-cyan-400">EX</span>
-        </h1>
-
-        <p className="text-lg sm:text-xl md:text-xl text-gray-300 max-w-2xl mx-auto mb-12 md:mb-16 leading-relaxed">
-         A controlled, fixed-supply native blockchain asset designed for  
-          <span className="block mt-2 font-medium text-white">
-            scalability and transparency. No inflation. No hidden minting. Complete monetary predictability. 
-          </span>
-        </p>
-
-        {/* Stats – đẹp hơn, thêm icon nhẹ nếu muốn */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 md:gap-16 max-w-5xl mx-auto mb-16">
-          {[
-            { value: "1,000,000,000", label: "Total Supply" },
-            { value: "SHA-256", label: "Algorithm" },
-            { value: "100%", label: "Decentralized" },
-          ].map((stat, i) => (
-            <div key={i} className="text-center">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 tracking-tight">
-                {stat.value}
-              </div>
-              <div className="mt-2 text-xs sm:text-sm uppercase font-semibold text-gray-400">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA buttons – premium look */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8">
-          
-          <a href="#whitepaper"
-           className="px-10 py-4 bg-transparent border-2 border-white/60 text-white font-bold text-lg rounded-full hover:bg-white/10 hover:border-white transition-all duration-300">
-            Read Whitepaper
-          </a>
-
-          <a
-            href="#contact"
-            className="px-10 py-4 border-2 border-cyan-500/50 text-cyan-300 font-bold text-lg rounded-full hover:bg-cyan-950/30 hover:border-cyan-400 transition-all duration-300"
-          >
-            Connect With Us
-          </a>
-        </div>
+      {/* Background vectors */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Image
+          src={vector1}
+          alt=""
+          className="absolute top-0 left-0 w-[250px] md:w-[300px] lg:w-[350px] opacity-100"
+        />
+        <Image
+          src={vector2}
+          alt=""
+          className="absolute bottom-0 right-0 w-[250px] md:w-[500px] lg:w-[1000px] opacity-80"
+        />
       </div>
 
-      {/* Optional: subtle scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce">
-        ↓ Scroll to explore
+      {/*
+        Wrapper: max-w-[1280px] + mx-auto ensures that on screens wider than 1280px
+        the content stays centered and locked to the 1280px layout.
+        w-[92%] keeps the same side padding as before on smaller screens.
+      */}
+      <div className="relative z-10 mx-auto w-[92%] max-w-[1280px]">
+        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-16">
+
+          {/* LEFT */}
+          <div className="relative mt-20 md:mt-24 lg:mt-30 w-full lg:w-1/2 flex justify-center lg:justify-start">
+
+            <div className="absolute top-0 left-8 lg:left-15">
+              <HeroTitle />
+            </div>
+
+            <Image
+              src={heroCharacter}
+              alt="On-Chain Master Character"
+              className="z-30 mt-12 md:mt-16 lg:mt-16 w-[60vw] max-w-[500px] md:max-w-[600px] lg:max-w-[620px] min-w-[280px] h-auto md:h-[480px] lg:h-[550px]"
+              style={{
+                /* On screens >= 1280px, 60vw would exceed the capped container.
+                   We clamp the width so it never grows beyond what it was at 1280px. */
+                maxWidth: "min(620px, calc(1280px * 0.5 - 2rem))",
+              }}
+              priority
+            />
+          </div>
+
+          {/* RIGHT */}
+          <div className="w-full lg:w-1/2 mb-16 md:mb-10 lg:mt-70 text-center lg:text-left">
+            <p className="text-[#c8dde0] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed">
+              Don&apos;t miss our exclusive airdrop! Be part of the On-Chain Master launch and receive free tokens – the easiest way to join our blockchain ecosystem and start earning from day one.
+            </p>
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-[15px] justify-center lg:justify-start">
+
+              {/* START NOW */}
+              <button
+                className="
+                  w-full sm:w-[270px] h-[54px] sm:h-[58px]
+                  flex items-center justify-center gap-[15px]
+                  rounded-[29.469px]
+                  bg-[#0CA8B9]
+                  text-black
+                  text-[18px] sm:text-[23px]
+                  font-semibold
+                  transition
+                  hover:brightness-110
+                  active:brightness-95
+                "
+              >
+                <span>Start Now</span>
+                <ArrowRight className="hidden sm:inline" size={26} strokeWidth={2.5} />
+                <ArrowRight className="inline sm:hidden" size={22} strokeWidth={2.5} />
+              </button>
+
+              {/* JOIN TELEGRAM */}
+              <button
+                className="
+                  w-full sm:w-[270px] h-[54px] sm:h-[58px]
+                  flex items-center justify-center gap-[15px]
+                  rounded-[29.469px]
+                  border border-[#0CA8B9]
+                  text-white
+                  text-[18px] sm:text-[23px]
+                  font-semibold
+                  transition
+                  hover:bg-[#0CA8B9]/10
+                  active:bg-[#0CA8B9]/20
+                "
+              >
+                <span>Join Telegram</span>
+                <Send className="hidden sm:inline" size={24} strokeWidth={2.5} />
+                <Send className="inline sm:hidden" size={22} strokeWidth={2.5} />
+              </button>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

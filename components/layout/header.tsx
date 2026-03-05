@@ -39,13 +39,13 @@ export function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 ml-102">
-            {['About', 'Roadmap', 'Whitepaper', 'Features', 'Contact'].map(
+          <nav className="hidden md:flex items-center gap-4 lg:gap-8 flex-1 justify-center px-6 lg:px-0">
+            {['About', 'Supply', 'Roadmap', 'Whitepaper', 'Features', 'Contact'].map(
               (item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-slate-300 hover:text-cyan-400 transition-colors duration-300"
+                  className="text-slate-300 hover:text-cyan-400 transition-colors duration-300 text-sm lg:text-base"
                 >
                   {item}
                 </a>
@@ -91,13 +91,13 @@ export function Header() {
             animate-in fade-in slide-in-from-top-4 duration-300
           ">
             <nav className="flex flex-col gap-6 text-center">
-              {['About', 'Roadmap', 'Whitepaper', 'Features', 'Contact'].map(
+              {['About', 'Supply', 'Roadmap', 'Whitepaper', 'Features', 'Contact'].map(
                 (item, idx) => (
                   <a
                     key={item}
-                   href={`#${item.toLowerCase()}`}
+                    href={`#${item.toLowerCase()}`}
                     onClick={() => setIsOpen(false)}
-                    className={`text-slate-300 hover:text-cyan-400 transition py-2 ${idx < 4 ? 'border-b border-gray-700' : ''}`}
+                    className={`text-slate-300 hover:text-cyan-400 transition py-2 ${idx < 6 ? 'border-b border-gray-700' : ''}`}
                   >
                     {item}
                   </a>
