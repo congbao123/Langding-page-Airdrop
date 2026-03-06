@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     title: "WikaEX – 1B Fixed Supply Blockchain | Claim $WIKA Airdrop",
     description:
       "WikaEX is a fixed 1B supply blockchain asset with transparent emission, predictable tokenomics, and long-term scarcity design. Claim your $WIKA airdrop today.",
-    images: [OG_IMAGE], // ✅
+    images: [OG_IMAGE], // Twitter will use the first image in the array for the card
     creator: "@wikaex",
   },
 
