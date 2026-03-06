@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 export function ContactSection() {
   const contacts = [
     {
@@ -40,8 +42,8 @@ export function ContactSection() {
       name: "Email",
       svg: (
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke="currentColor" strokeWidth="2"/>
-          <path d="m2 6 10 7 10-7" stroke="currentColor" strokeWidth="2" fill="none"/>
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="m2 6 10 7 10-7" stroke="currentColor" strokeWidth="2" fill="none" />
         </svg>
       ),
       url: "mailto:hello@wikaex.com",
@@ -58,7 +60,7 @@ export function ContactSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(6,182,212,0.08),transparent_60%)]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
-        
+
         {/* Title */}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
@@ -91,7 +93,7 @@ export function ContactSection() {
                 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]
                 hover:-translate-y-2
               ">
-                
+
                 {/* Icon */}
                 <div className="
                   text-slate-300
@@ -116,18 +118,9 @@ export function ContactSection() {
           <p className="text-slate-500 mb-6">
             Choose your preferred platform to reach out.
           </p>
-          <button className="
-            px-10 py-3
-            bg-cyan-500
-            text-black
-            font-semibold
-            rounded-full
-            transition-all duration-300
-            hover:bg-cyan-400
-            hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]
-          ">
-            Get Started
-          </button>
+          <Button className="px-10 py-3 text-[16px]">
+            Claim Airdrop
+          </Button>
         </div>
       </div>
     </section>

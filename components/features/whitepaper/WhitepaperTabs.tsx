@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Overview from "./content/Overview";
 import MonetaryPolicy from "./content/MonetaryPolicy";
 import Architecture from "./content/Architecture";
@@ -21,58 +22,41 @@ const tabs = [
 
 export default function WhitepaperTabs() {
   const [active, setActive] = useState("Overview");
-  const [fade, setFade] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Simple fade animation when switching tabs
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setFade(true);
-    const t = setTimeout(() => setFade(false), 220);
-    return () => clearTimeout(t);
-  }, [active]);
-
-  // scroll active tab into view on mobile — only horizontally inside the container
+  // scroll active tab into view on mobile
   useEffect(() => {
     const container = containerRef.current as HTMLDivElement | null;
     const el = container?.querySelector('[data-tab-active="true"]') as HTMLElement | null;
     if (container && el) {
-      // calculate horizontal offset to center the active tab inside the scroll container
       const containerRect = container.getBoundingClientRect();
       const elRect = el.getBoundingClientRect();
-      const offset = elRect.left - containerRect.left - container.clientWidth / 2 + el.clientWidth / 2;
+      const offset =
+        elRect.left - containerRect.left - container.clientWidth / 2 + el.clientWidth / 2;
       container.scrollTo({ left: container.scrollLeft + offset, behavior: "smooth" });
     }
   }, [active]);
 
   function renderContent() {
     switch (active) {
-      case "Overview":
-        return <Overview />;
-      case "Monetary Policy":
-        return <MonetaryPolicy />;
-      case "Architecture":
-        return <Architecture />;
-      case "Consensus":
-        return <Consensus />;
-      case "Transactions":
-        return <Transactions />;
-      case "Comparison":
-        return <Comparison />;
-      case "Roadmap":
-        return <Roadmap />;
-      default:
-        return null;
+      case "Overview": return <Overview />;
+      case "Monetary Policy": return <MonetaryPolicy />;
+      case "Architecture": return <Architecture />;
+      case "Consensus": return <Consensus />;
+      case "Transactions": return <Transactions />;
+      case "Comparison": return <Comparison />;
+      case "Roadmap": return <Roadmap />;
+      default: return null;
     }
   }
 
   return (
     <>
-      {/* Tabs: horizontally scrollable on small screens */}
+      {/* Tabs */}
       <div className="mb-6">
         <div
           ref={containerRef}
-          className="bg-[#F9FAFB] rounded-2xl shadow-sm p-3 overflow-x-auto no-scrollbar flex gap-3 md:gap-4 whitespace-nowrap"
+          className="bg-[#F9FAFB] rounded-2xl shadow-sm p-3 overflow-x-auto no-scrollbar flex gap-3 md:gap-4 whitespace-nowrap relative"
           role="tablist"
           aria-label="Whitepaper Sections"
         >
@@ -83,23 +67,35 @@ export default function WhitepaperTabs() {
               role="tab"
               aria-selected={active === tab}
               onClick={() => setActive(tab)}
-              className={`min-w-[8rem] cursor-pointer md:min-w-0 px-4 md:px-5 py-2 rounded-xl text-sm md:text-sm font-medium transition flex-shrink-0 text-center focus:outline-none focus:ring-2 
-                ${
-                  active === tab
-                    ? "bg-cyan-600 text-white shadow"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+              className={`relative min-w-[8rem] cursor-pointer md:min-w-0 px-4 md:px-5 py-2 rounded-xl text-sm font-medium flex-shrink-0 text-center focus:outline-none focus:ring-2 transition-colors duration-200
+                ${active === tab ? "text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}
             >
-              {tab}
+              {/* Animated active pill behind text */}
+              {active === tab && (
+                <motion.span
+                  layoutId="active-tab-pill"
+                  className="absolute inset-0 rounded-xl bg-cyan-600 shadow"
+                  transition={{ type: "spring", bounce: 0.25, duration: 0.45 }}
+                />
+              )}
+              <span className="relative z-10">{tab}</span>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Content with fade */}
-      <div className={`transition-opacity duration-220 ${fade ? "opacity-30" : "opacity-100"}`}>
-        {renderContent()}
-      </div>
+      {/* Content with AnimatePresence for smooth tab switch */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+        >
+          {renderContent()}
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 }

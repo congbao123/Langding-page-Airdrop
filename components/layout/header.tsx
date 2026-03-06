@@ -6,6 +6,9 @@ import Image from 'next/image';
 
 import logo from '@/public/Img/header/logo.png';
 import textlogo from '@/public/Img/header/logo.svg';
+import { Button } from "@/components/ui/button";
+
+const navItems = ['About', 'Supply', 'Roadmap', 'Whitepaper', 'Contact'];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,16 +17,16 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
       <div className="max-w-7xl mx-auto">
         <div className="
-          bg-[#0B0E13]/90
+          bg-[#0a0a0f]/40
           backdrop-blur-xl
-          border border-cyan-500/10
+          border border-white/10
           rounded-full
           px-6 md:px-8
           py-3
           flex items-center justify-between
-          shadow-[0_0_30px_rgba(6,182,212,0.08)]
+          shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_2px_rgba(255,255,255,0.15),0_0_20px_rgba(12,168,185,0.1)]
         ">
-          
+
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="w-9 h-9 flex items-center justify-center shrink-0">
@@ -40,33 +43,27 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-4 lg:gap-8 flex-1 justify-center px-6 lg:px-0">
-            {['About', 'Supply', 'Roadmap', 'Whitepaper', 'Features', 'Contact'].map(
-              (item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-slate-300 hover:text-cyan-400 transition-colors duration-300 text-sm lg:text-base"
-                >
+            {navItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="group relative text-slate-300 hover:text-white transition-all duration-300 text-sm lg:text-base font-medium px-2 py-1"
+              >
+                <span className="relative z-10 transition-colors duration-300 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
                   {item}
-                </a>
-              )
-            )}
+                </span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-cyan-400 blur-[1px] transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100 rounded-full" />
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-4/5 opacity-0 group-hover:opacity-100 rounded-full" />
+              </a>
+            ))}
           </nav>
 
           {/* Desktop Button */}
-          <button className="
-            hidden md:inline-flex
-            px-6 py-2
-            bg-cyan-400
-            text-black
-            font-semibold
-            rounded-full
-            hover:bg-cyan-300
-            transition-all duration-300
-            hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]
-          ">
-            Launch App
-          </button>
+          <div className="hidden md:block">
+            <Button className="inline-flex px-6 py-2 text-[16px]">
+              Claim Airdrop
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -82,42 +79,35 @@ export function Header() {
           <div className="
             md:hidden
             mt-4
-            bg-[#0B0E13]/95
+            bg-[#0a0a0f]/40
             backdrop-blur-xl
-            border border-cyan-500/10
+            border border-white/10
             rounded-2xl
             p-6
-            shadow-[0_0_40px_rgba(6,182,212,0.08)]
+            shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_2px_rgba(255,255,255,0.15),0_0_20px_rgba(12,168,185,0.1)]
             animate-in fade-in slide-in-from-top-4 duration-300
           ">
             <nav className="flex flex-col gap-6 text-center">
-              {['About', 'Supply', 'Roadmap', 'Whitepaper', 'Features', 'Contact'].map(
-                (item, idx) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    onClick={() => setIsOpen(false)}
-                    className={`text-slate-300 hover:text-cyan-400 transition py-2 ${idx < 6 ? 'border-b border-gray-700' : ''}`}
-                  >
+              {navItems.map((item, idx) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setIsOpen(false)}
+                  className={`group relative text-slate-300 hover:text-white transition-all duration-300 py-2 ${
+                    idx < navItems.length - 1 ? 'border-b border-white/5' : ''
+                  }`}
+                >
+                  <span className="relative z-10 transition-colors duration-300 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
                     {item}
-                  </a>
-                )
-              )}
+                  </span>
+                  <span className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full bg-cyan-500/0 group-hover:bg-cyan-500/10 transition-all duration-300 rounded-lg blur-md" />
+                </a>
+              ))}
             </nav>
 
-            <button className="
-              mt-6
-              w-full
-              py-3
-              bg-cyan-400
-              text-black
-              font-semibold
-              rounded-full
-              hover:bg-cyan-300
-              transition
-            ">
-              Launch App
-            </button>
+            <Button className="mt-6 w-full py-3 text-[16px]">
+              Claim Airdrop
+            </Button>
           </div>
         )}
       </div>

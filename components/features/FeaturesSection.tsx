@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import {
   Blocks,
   Cpu,
@@ -6,34 +9,60 @@ import {
   Network,
 } from "lucide-react";
 
+const viewport = { once: true, margin: "0px" };
+
 export const FeaturesSection = () => {
   return (
     <section id="features" className="relative bg-[#0A0F1C] py-24 md:py-32 px-6 overflow-hidden">
-      {/* Ambient glows - tạo chiều sâu Web3 */}
       <div className="absolute top-12 left-1/3 w-[620px] h-[620px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-20 right-1/4 w-[480px] h-[480px] bg-violet-500/10 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
+
         {/* Header */}
-        <div className="text-center mb-20">
-          <span className="text-cyan-400 text-sm tracking-[0.3em] uppercase font-medium">
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.span
+            className="text-cyan-400 text-sm tracking-[0.3em] uppercase font-medium"
+            initial={{ opacity: 0, letterSpacing: "0.1em" }}
+            whileInView={{ opacity: 1, letterSpacing: "0.3em" }}
+            viewport={viewport}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
             Technology
-          </span>
+          </motion.span>
 
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-6">
             Built for Security & Scale
           </h2>
 
-          <div className="mt-6 h-0.5 w-28 mx-auto bg-gradient-to-r from-cyan-400 to-violet-500 rounded-full" />
+          <motion.div
+            className="mt-6 h-0.5 w-28 mx-auto bg-gradient-to-r from-cyan-400 to-violet-500 rounded-full"
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            viewport={viewport}
+            transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+          />
 
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">
             Production-grade blockchain architecture engineered for
             reliability, performance, and sovereignty.
           </p>
-        </div>
+        </motion.div>
 
-        {/* BIG FEATURE - Native Blockchain */}
-        <div className="mb-16">
+        {/* BIG FEATURE */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="bg-[#111827] p-10 md:p-16 rounded-3xl border border-cyan-500/20 hover:border-cyan-400 transition-all duration-500 group">
             <div className="flex flex-col md:flex-row gap-12 items-start">
               <PremiumIcon size="large">
@@ -41,21 +70,42 @@ export const FeaturesSection = () => {
               </PremiumIcon>
 
               <div className="flex-1 pt-3">
-                <h3 className="text-3xl md:text-4xl font-semibold text-white mb-6">
+                <motion.h3
+                  className="text-3xl md:text-4xl font-semibold text-white mb-6"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={viewport}
+                  transition={{ duration: 0.55, delay: 0.15 }}
+                >
                   Native Blockchain Infrastructure
-                </h3>
-                <p className="text-gray-400 leading-relaxed text-lg max-w-3xl">
+                </motion.h3>
+                <motion.p
+                  className="text-gray-400 leading-relaxed text-lg max-w-3xl"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={viewport}
+                  transition={{ duration: 0.55, delay: 0.25 }}
+                >
                   Independent mainnet architecture with custom node execution
                   layer. Full protocol ownership, deterministic validation,
                   and sovereign governance. Not a token — a complete chain.
-                </p>
+                </motion.p>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* 5 Feature Cards - Grid responsive đẹp trên mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Feature Cards Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+        >
           <FeatureCard
             icon={<Cpu className="w-9 h-9" />}
             title="Lightweight PoW"
@@ -81,14 +131,14 @@ export const FeaturesSection = () => {
             title="SHA-256 Security"
             desc="Industry-grade cryptographic hashing ensuring immutable block validation."
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
 /* ========================= */
-/* PREMIUM ICON COMPONENT  */
+/* PREMIUM ICON COMPONENT    */
 /* ========================= */
 const PremiumIcon = ({
   children,
@@ -101,10 +151,7 @@ const PremiumIcon = ({
 
   return (
     <div className="relative flex-shrink-0 group/icon">
-      {/* Layer 1: Outer neon glow (mờ dần khi hover) */}
       <div className="absolute -inset-6 bg-gradient-to-br from-cyan-400/30 via-violet-500/20 to-transparent rounded-[30px] blur-3xl transition-all duration-700 group-hover/icon:blur-[55px] group-hover/icon:opacity-80" />
-
-      {/* Layer 2: Glass container + border neon */}
       <div
         className={`relative ${sizeClass} rounded-3xl 
                     bg-gradient-to-br from-[#16213A] to-[#0F172A] 
@@ -113,24 +160,27 @@ const PremiumIcon = ({
                     group-hover/icon:scale-110 group-hover/icon:-rotate-[8deg] 
                     group-hover/icon:border-cyan-400/70`}
       >
-        {/* Inner shine effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent rounded-3xl" />
-
-        {/* Icon chính */}
         <div className="relative z-10 text-cyan-300 group-hover/icon:text-white transition-colors">
           {children}
         </div>
       </div>
-
-      {/* Layer 3: Thin accent ring */}
-      {/* <div className="absolute -inset-1 border border-cyan-400/15 rounded-[26px] scale-90 group-hover/icon:scale-100 transition-all duration-700" /> */}
     </div>
   );
 };
 
 /* ========================= */
-/* REUSABLE FEATURE CARD */
+/* REUSABLE FEATURE CARD     */
 /* ========================= */
+const cardVariants = {
+  hidden: { opacity: 0, y: 32 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
 const FeatureCard = ({
   icon,
   title,
@@ -141,7 +191,10 @@ const FeatureCard = ({
   desc: string;
 }) => {
   return (
-    <div className="group bg-[#111827] p-9 rounded-3xl border border-white/5 hover:border-cyan-400/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/15 flex flex-col">
+    <motion.div
+      variants={cardVariants}
+      className="group bg-[#111827] p-9 rounded-3xl border border-white/5 hover:border-cyan-400/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/15 flex flex-col"
+    >
       <PremiumIcon>{icon}</PremiumIcon>
 
       <h4 className="text-xl font-semibold text-white mt-8 mb-4 group-hover:text-cyan-300 transition-colors">
@@ -151,6 +204,6 @@ const FeatureCard = ({
       <p className="text-gray-400 text-[15px] leading-relaxed mt-auto">
         {desc}
       </p>
-    </div>
+    </motion.div>
   );
 };

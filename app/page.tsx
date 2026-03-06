@@ -1,6 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import  HeroSection  from "@/components/features/hero";
+import  HeroSection  from "@/components/features/Hero";
 import { FeaturesSection } from "@/components/features/FeaturesSection";
 import { SupplySection } from "@/components/features/SupplySection";
 import { RoadmapSection } from "@/components/features/RoadmapSection";
@@ -13,26 +13,13 @@ export default function Home() {
     <>
       <Header />
       <main>
-          <FadeInSection direction="down" delay={0}>
+        
            <HeroSection  />
-        </FadeInSection>
-
-        <FadeInSection direction="down" delay={0}>
-          <SupplySection />
-        </FadeInSection>
-
-        <FadeInSection direction="up" delay={0}>
+             <SupplySection />
           <RoadmapSection />
-        </FadeInSection>
-
-        <FadeInSection direction="up" delay={0}>
+    
           <WhitepaperSection />
-        </FadeInSection>
-
-        <FadeInSection direction="up" delay={0}>
-          <FeaturesSection />
-        </FadeInSection>
-
+    
         <FadeInSection direction="up" delay={0}>
           <ContactSection />
         </FadeInSection>

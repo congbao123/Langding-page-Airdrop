@@ -3,7 +3,8 @@
   <!-- Add additional <url> entries as your pages grow -->
   <url>
     <loc>https://langding-page-airdrop.vercel.app/</loc>
-    <priority>1.00</priority>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-03-06</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.0</priority>
   </url>
 </urlset>

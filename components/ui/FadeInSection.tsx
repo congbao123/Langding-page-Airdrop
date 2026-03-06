@@ -12,7 +12,7 @@ interface FadeInSectionProps {
 
 export const FadeInSection = ({
   children,
-  delay = 0,
+  delay = 0.5,
   direction = "up",
 }: FadeInSectionProps) => {
   const directionMap = {
