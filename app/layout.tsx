@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-Better.png",
         width: 1200,
         height: 630,
         alt: "WikaEX – 1B Fixed Supply Blockchain",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: "WikaEX – 1B Fixed Supply Blockchain | Claim $WIKA Airdrop",
     description:
       "WikaEX is a fixed 1B supply blockchain asset with transparent emission, predictable tokenomics, and long-term scarcity design. Claim your $WIKA airdrop today.",
-    images: ["/og-image.png"],
+    images: ["/og-Better.png"],
     creator: "@wikaex",
   },
 
