@@ -7,32 +7,38 @@ import { FadeInSection } from "../ui/FadeInSection";
 const roadmapData = [
   {
     phase: "Phase 1",
-    title: "Mainnet Deployment",
-    desc: "Genesis block creation, node infrastructure deployment, and network stabilization for production-ready operation.",
+    title: "Project Foundation",
+    desc: "Establish the foundation of the exchange ecosystem, including tokenomics design, smart contract development, and the launch of the official website and community channels.",
     icon: <Rocket className="w-5 h-5 text-cyan-400" />,
   },
   {
     phase: "Phase 2",
-    title: "Explorer Development",
-    desc: "Blockchain explorer launch for transparent viewing of transactions, blocks, addresses, and network statistics.",
+    title: "Token Launch",
+    desc: "Officially issue the exchange token and list it on the CEX platform. Integrate basic utilities such as trading fee discounts, staking rewards, and loyalty programs for users.",
     icon: <Search className="w-5 h-5 text-cyan-400" />,
   },
   {
     phase: "Phase 3",
-    title: "Exchange Listings",
-    desc: "Strategic integration with CoinMarketCap, CoinGecko, and cryptocurrency exchanges for global liquidity.",
+    title: "Exchange Ecosystem Integration",
+    desc: "Expand the token’s utility across the exchange platform, including Launchpad participation, trading incentives, and periodic token burn mechanisms to support long-term value.",
     icon: <TrendingUp className="w-5 h-5 text-cyan-400" />,
   },
   {
     phase: "Phase 4",
-    title: "Validator Expansion",
-    desc: "Network decentralization through onboarding of additional node operators and consensus participants.",
+    title: "Platform Expansion",
+    desc: "Introduce additional exchange services such as futures trading, copy trading, and institutional APIs while strengthening partnerships and ecosystem growth.",
     icon: <Network className="w-5 h-5 text-cyan-400" />,
   },
   {
     phase: "Phase 5",
-    title: "Ecosystem dApps",
-    desc: "Decentralized application development, strategic partnerships, and real-world utility integration.",
+    title: "Blockchain Development",
+    desc: "Begin development of a dedicated blockchain network where the exchange token evolves into the native coin used for transaction fees, staking, and governance.",
+    icon: <Layers className="w-5 h-5 text-cyan-400" />,
+  },
+  {
+    phase: "Phase 6",
+    title: "Native Chain Ecosystem",
+    desc: "Launch the blockchain mainnet and support decentralized applications, cross-chain services, and Web3 ecosystem growth around the native coin.",
     icon: <Layers className="w-5 h-5 text-cyan-400" />,
   },
 ];
