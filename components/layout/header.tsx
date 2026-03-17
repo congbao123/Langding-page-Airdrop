@@ -7,7 +7,18 @@ import Image from 'next/image';
 import logo from '@/public/Img/header/logo.png';
 import textlogo from '@/public/Img/header/logo.svg';
 import { Button } from "@/components/ui/button";
+import { getFirebaseAnalytics } from "@/lib/firebase";
+import { logEvent } from "firebase/analytics";
 
+async function trackClick(label: string) {
+  const analytics = await getFirebaseAnalytics();
+  if (analytics) {
+    logEvent(analytics, "claim_airdrop_click", {
+      button_label: label,
+      page_section: "header",
+    });
+  }
+}
 const navItems = ['About', 'Supply', 'Roadmap', 'Whitepaper', 'Contact'];
 
 export function Header() {
@@ -60,9 +71,11 @@ export function Header() {
 
           {/* Desktop Button */}
           <div className="hidden md:block">
-            <Button className="inline-flex px-6 py-2 text-[16px]">
-              Claim Airdrop
-            </Button>
+            <a href="https://t.me/Wika_EX" target="_blank" rel="noopener noreferrer" onClick={() => trackClick("Claim Airdrop - Header Desktop")}>
+              <Button className="inline-flex px-6 py-2 text-[16px]">
+                Claim Airdrop
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,9 +118,11 @@ export function Header() {
               ))}
             </nav>
 
-            <Button className="mt-6 w-full py-3 text-[16px]">
-              Claim Airdrop
-            </Button>
+            <a href="https://t.me/Wika_EX" target="_blank" rel="noopener noreferrer" className="block" onClick={() => trackClick("Claim Airdrop - Header Mobile")}>
+              <Button className="mt-6 w-full py-3 text-[16px]">
+                Claim Airdrop
+              </Button>
+            </a>
           </div>
         )}
       </div>

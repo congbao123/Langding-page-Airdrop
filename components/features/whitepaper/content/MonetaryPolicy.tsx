@@ -19,6 +19,13 @@ export default function MonetaryPolicy() {
           <li>Distribution occurs via on-chain transactions</li>
           <li>No automatic block rewards are generated</li>
         </ul>
+        
+        <p className="mt-4 font-semibold text-gray-900">Miner Incentives:</p>
+        <ul className="list-disc pl-6 space-y-2 mb-4">
+          <li>Since there are no block rewards, miners are compensated entirely through <strong>Transaction Fees</strong>.</li>
+          <li>This ensures the network remains secure and sustainable without inflating the total supply.</li>
+        </ul>
+
         <p className="text-cyan-600">This model ensures:</p>
         <ul className="list-disc pl-6 space-y-2">
           <li>Stable value over time</li>

@@ -16,6 +16,7 @@ export default function Consensus() {
         <li>Nonce incremented until hash satisfies difficulty</li>
         <li>Valid hash appended to chain</li>
         <li>Transactions included from mempool</li>
+        <li>Miners collect transaction fees as a reward</li>
       </ol>
 
       <p className="mt-4 font-semibold">This provides:</p>

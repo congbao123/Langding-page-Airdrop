@@ -1,5 +1,18 @@
-import { Button } from "@/components/ui/button";
+"use client";
 
+import { Button } from "@/components/ui/button";
+import { getFirebaseAnalytics } from "@/lib/firebase";
+import { logEvent } from "firebase/analytics";
+
+async function trackClick(label: string) {
+  const analytics = await getFirebaseAnalytics();
+  if (analytics) {
+    logEvent(analytics, "claim_airdrop_click", {
+      button_label: label,
+      page_section: "contact",
+    });
+  }
+}
 export function ContactSection() {
   const contacts = [
     {
@@ -71,7 +84,7 @@ export function ContactSection() {
           </p>
         </div>
 
-        {/* Cards - CHỈ thay đổi grid để responsive tốt hơn trên mobile */}
+        {/* Cards -  grid  responsive  mobile */}
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8 mb-12 md:mb-16">
           {contacts.map((contact, index) => (
             <a
@@ -80,6 +93,7 @@ export function ContactSection() {
               target={contact.name !== "Email" ? "_blank" : undefined}
               rel={contact.name !== "Email" ? "noopener noreferrer" : undefined}
               className="group"
+              onClick={() => trackClick(`Community Link - ${contact.name}`)}
             >
               <div className="
                 relative
@@ -118,9 +132,11 @@ export function ContactSection() {
           <p className="text-slate-500 mb-6">
             Choose your preferred platform to reach out.
           </p>
-          <Button className="px-10 py-3 text-[16px]">
-            Claim Airdrop
-          </Button>
+          <a href="https://t.me/Wika_EX" target="_blank" rel="noopener noreferrer" onClick={() => trackClick("Claim Airdrop - Contact")}>
+            <Button className="px-10 py-3 text-[16px]">
+              Claim Airdrop
+            </Button>
+          </a>
         </div>
       </div>
     </section>

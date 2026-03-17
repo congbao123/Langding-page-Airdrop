@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { AnalyticsProvider } from "@/components/AnalyticsProvider";
+import { getBaseUrl } from "@/lib/config";
 
-const BASE_URL = "https://landing-page-airdrop.vercel.app";
+const BASE_URL = getBaseUrl();
 const OG_IMAGE = `${BASE_URL}/og-Better.png`;
 
 export const viewport: Viewport = {
@@ -93,7 +95,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <AnalyticsProvider />
+      </body>
     </html>
   );
 }

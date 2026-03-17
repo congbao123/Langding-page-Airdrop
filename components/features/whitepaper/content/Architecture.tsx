@@ -8,7 +8,7 @@ export default function Architecture() {
         <ul className="list-disc pl-6 space-y-2">
           <li>Wikaex-mainnet</li>
           <li>Custom blockchain implementation</li>
-          <li>JSON state persistence</li>
+          <li>Lightweight document-based persistence</li>
         </ul>
       </SectionCard>
       <SectionCard number="3.2" title="Block Structure">
@@ -40,12 +40,12 @@ export default function Architecture() {
       </SectionCard>
 
       <SectionCard number="3.4" title="State Management">
-        <p>Wikaex uses JSON-based persistence:</p>
+        <p>Wikaex uses lightweight, document-based state ledgers:</p>
         <ul className="list-disc pl-6 space-y-2">
-          <li><strong>state.json</strong> → balances</li>
-          <li><strong>blockchain.json</strong> → chain</li>
-          <li><strong>mempool.json</strong> → pending transactions</li>
-          <li><strong>nonces.json</strong> → nonce tracking</li>
+          <li><strong>State Ledger</strong> (state.json) → balances</li>
+          <li><strong>Chain Data</strong> (blockchain.json) → immutable chain</li>
+          <li><strong>Memory Pool</strong> (mempool.json) → pending transactions</li>
+          <li><strong>Nonce Tracker</strong> (nonces.json) → transaction ordering</li>
         </ul>
 
         <p className="mt-4">Total supply is calculated dynamically:</p>
